@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מסכת ברכות פרק ד׳ — תפילה בזמנה</title>
+<style>
+  /* ===== RESET & BASE ===== */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: Arial, sans-serif;
+    direction: rtl;
+    background: #fafafa;
+    color: #2c2c2c;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ===== PAGE LAYOUT ===== */
+ .page {
+    background: white;
+    width: 210mm;
+    /* משנים מ-height ל-min-height */
+    min-height: 297mm; 
+    height: auto;      /* זה יגרום לדף להתרחב לפי הצורך */
+    margin: 40px auto;
+    padding: 20mm;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: block;
+    position: relative;
+    overflow: visible; /* מאפשר לתוכן להיראות */
+    box-sizing: border-box; /* מבטיח שה-padding לא יהרוס את המידות */
+}
+
+
+  @media print {
+    body { background: #fff; }
+    .page {
+      box-shadow: none;
+      margin: 0;
+      page-break-after: always;
+    }
+    .no-print { display: none; }
+  }
+
+  /* ===== PAGE NUMBER ===== */
+  .page-num {
+    position: absolute;
+    top: 10mm;
+    left: 18mm;
+    font-size: 12px;
+    color: #888;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+
+  /* ===== STUDENT HEADER ===== */
+  .student-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #c8a84b;
+    padding-bottom: 6px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    color: #555;
+    gap: 20px;
+  }
+  .student-header span { display: flex; align-items: center; gap: 6px; }
+  .student-header .line {
+    border-bottom: 1px solid #999;
+    display: inline-block;
+    min-width: 120px;
+    height: 16px;
+  }
+
+  /* ===== UNIT BADGE ===== */
+  .unit-badge {
+    text-align: center;
+    background: linear-gradient(135deg, #7b4f1e 0%, #c8872a 100%);
+    color: #fff;
+    border-radius: 10px;
+    padding: 10px 20px;
+    margin-bottom: 16px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== HEADINGS ===== */
+  h1 {
+    font-family: 'Frank Ruehl CLM', 'David CLM', David, serif;
+    font-size: 28px;
+    text-align: center;
+    color: #7b4f1e;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  h2 {
+    font-size: 18px;
+    color: #5a3a10;
+    border-right: 5px solid #c8a84b;
+    padding-right: 10px;
+    margin: 18px 0 10px 0;
+  }
+  h3 {
+    font-size: 15px;
+    color: #7b4f1e;
+    margin: 12px 0 6px 0;
+  }
+
+  /* ===== OPENING PAGE ===== */
+  .opening-illustration {
+    text-align: center;
+    font-size: 60px;
+    margin: 10px 0;
+    line-height: 1;
+  }
+  .subtitle {
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .question-box {
+    background: linear-gradient(135deg, #fff8e7, #ffedc0);
+    border: 2.5px solid #c8a84b;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin: 20px 0;
+    position: relative;
+  }
+  .question-box::before {
+    content: "❓";
+    position: absolute;
+    top: -16px;
+    right: 20px;
+    font-size: 28px;
+    background: #fff8e7;
+    padding: 0 6px;
+  }
+  .question-box p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #5a3a10;
+    text-align: center;
+    line-height: 1.6;
+  }
+  .answer-lines-label {
+    font-size: 13px;
+    color: #777;
+    margin: 16px 0 6px 0;
+  }
+  .answer-lines {
+    border-bottom: 1.5px solid #ccc;
+    margin-bottom: 14px;
+    min-height: 30px;
+  }
+
+  /* ===== TEXT PAGE ===== */
+  .gemara-font {
+    font-family: 'Frank Ruehl CLM', 'David CLM', David, 'Times New Roman', serif;
+    font-size: 20px;
+    line-height: 2.1;
+  }
+  .kushia {
+    background: #fffbc2;
+    border-right: 4px solid #e0c020;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    display: block;
+  }
+  .tiretz {
+    background: #e8f8e8;
+    border-right: 4px solid #4caf50;
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin: 8px 0;
+    display: block;
+  }
+  .hard-word {
+    position: relative;
+    cursor: help;
+  }
+  .trans {
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    color: #555;
+    font-weight: normal;
+    background: #f0f0f0;
+    border-radius: 4px;
+    padding: 1px 5px;
+    margin-right: 2px;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+  }
+  .legend {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 18px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fafafa;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+  }
+  .legend-box {
+    width: 24px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+  }
+  .legend-kushia { background: #fffbc2; border-color: #e0c020; }
+  .legend-tiretz { background: #e8f8e8; border-color: #4caf50; }
+
+  /* ===== WORKSHEETS ===== */
+  .worksheet-frame {
+    border: 2px solid #c8a84b;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    background: #fffdf7;
+  }
+  .q-block {
+    margin-bottom: 18px;
+  }
+  .q-num {
+    display: inline-block;
+    background: #7b4f1e;
+    color: #fff;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    text-align: center;
+    line-height: 26px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 8px;
+    flex-shrink: 0;
+  }
+  .q-text {
+    font-size: 15px;
+    font-weight: bold;
+    color: #3a2500;
+    display: inline;
+  }
+  .write-line {
+    border-bottom: 1.5px solid #bbb;
+    margin: 6px 0 4px 0;
+    min-height: 26px;
+  }
+  .special-q {
+    background: #fff3e0;
+    border-right: 4px solid #ff9800;
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-top: 4px;
+  }
+
+  /* ===== TABLE ===== */
+  .sugya-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 14px;
+  }
+  .sugya-table th {
+    background: #7b4f1e;
+    color: #fff;
+    padding: 10px 14px;
+    text-align: center;
+    font-size: 15px;
+  }
+  .sugya-table th:first-child { border-radius: 0 8px 0 0; }
+  .sugya-table th:last-child { border-radius: 8px 0 0 0; }
+  .sugya-table td {
+    border: 1px solid #ddd;
+    padding: 12px 14px;
+    vertical-align: top;
+    min-height: 50px;
+  }
+  .sugya-table tr:nth-child(even) td { background: #fffdf5; }
+  .col-kushia { background: #fffef0 !important; width: 50%; }
+  .col-tiretz { background: #f0fff0 !important; width: 50%; }
+
+  /* ===== FLOW DIAGRAM ===== */
+  .flow-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 14px 0;
+    flex-wrap: wrap;
+  }
+  .flow-box {
+    background: #fff8e7;
+    border: 2px solid #c8a84b;
+    border-radius: 10px;
+    padding: 8px 16px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    min-width: 90px;
+  }
+  .flow-box.filled { background: #e8f5e9; border-color: #4caf50; }
+  .flow-box.empty {
+    background: #fff;
+    border: 2px dashed #aaa;
+    color: #aaa;
+    min-width: 110px;
+  }
+  .flow-arrow {
+    font-size: 22px;
+    color: #c8a84b;
+    font-weight: bold;
+  }
+
+  /* ===== QUIZ INTERACTIVE ===== */
+  .quiz-q {
+    background: #fff;
+    border: 2px solid #e0d0b0;
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+    transition: border-color 0.3s;
+  }
+  .quiz-q.solved {
+    border-color: #4caf50;
+    background: #f9fff9;
+  }
+  .quiz-q-text {
+    font-weight: bold;
+    font-size: 16px;
+    color: #3a2500;
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .opt-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 2px solid #e0d0b0;
+    border-radius: 50px;
+    font-size: 15px;
+    font-family: Arial, sans-serif;
+    background: #fffdf7;
+    cursor: pointer;
+    transition: background 0.18s, border-color 0.18s, transform 0.15s;
+    text-align: right;
+    direction: rtl;
+    width: 100%;
+    color: #2c2c2c;
+  }
+  .opt-btn:hover:not(:disabled) {
+    background: #fff3d0;
+    border-color: #c8a84b;
+  }
+  .opt-btn:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+  .opt-circle {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #c8a84b;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: bold;
+    color: #7b4f1e;
+    flex-shrink: 0;
+    background: #fff;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .opt-btn.correct {
+    border-color: #43a047;
+    background: #e8f5e9;
+    animation: bounce 0.4s ease;
+  }
+  .opt-btn.correct .opt-circle {
+    background: #43a047;
+    border-color: #43a047;
+    color: #fff;
+  }
+  .opt-btn.wrong {
+    border-color: #e53935;
+    background: #ffebee;
+    animation: shake 0.35s ease;
+  }
+  .opt-btn.wrong .opt-circle {
+    background: #e53935;
+    border-color: #e53935;
+    color: #fff;
+  }
+  .opt-btn:disabled { cursor: default; }
+
+  @keyframes bounce {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.07); }
+    70%  { transform: scale(0.96); }
+    100% { transform: scale(1); }
+  }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    20%     { transform: translateX(-6px); }
+    40%     { transform: translateX(6px); }
+    60%     { transform: translateX(-4px); }
+    80%     { transform: translateX(4px); }
+  }
+
+  .feedback-msg {
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: 8px;
+    display: inline-block;
+    min-height: 30px;
+  }
+  .feedback-msg.ok  { color: #2e7d32; background: #e8f5e9; }
+  .feedback-msg.err { color: #c62828; background: #ffebee; }
+
+  .quiz-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .progress-dot {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: #e0d0b0;
+    transition: background 0.3s;
+  }
+  .progress-dot.done { background: #4caf50; }
+
+  .finish-banner {
+    display: none;
+    text-align: center;
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    border: 3px solid #43a047;
+    border-radius: 20px;
+    padding: 24px 20px;
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #1b5e20;
+    animation: bounceIn 0.5s ease;
+  }
+  .finish-banner.show { display: block; }
+  @keyframes bounceIn {
+    0%   { transform: scale(0.7); opacity: 0; }
+    70%  { transform: scale(1.05); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  .star-row { font-size: 36px; margin: 8px 0; letter-spacing: 4px; }
+
+  /* ===== VISUAL SUMMARY ===== */
+  .summary-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: #7b4f1e;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: linear-gradient(135deg, #fff8e7, #ffedc0);
+    border-radius: 10px;
+    border: 2px solid #c8a84b;
+  }
+  .diagram-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .diagram-card {
+    border: 2px solid #c8a84b;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .card-header {
+    background: linear-gradient(135deg, #7b4f1e, #c8872a);
+    color: #fff;
+    padding: 10px 16px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .card-body {
+    padding: 14px 16px;
+    background: #fffdf7;
+  }
+  .rule-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+  .rule-icon { font-size: 20px; }
+  .arrow-right {
+    color: #c8a84b;
+    font-size: 20px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+  .rule-result {
+    background: #e8f5e9;
+    border: 1px solid #4caf50;
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #2e7d32;
+  }
+  .reward-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+  }
+  .reward-table th {
+    background: #7b4f1e;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+  }
+  .reward-table td {
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-size: 14px;
+  }
+  .reward-full { background: #e8f5e9; color: #2e7d32; font-weight: bold; }
+  .reward-partial { background: #fff8e1; color: #e65100; font-weight: bold; }
+  .check { color: #4caf50; font-size: 18px; }
+  .cross { color: #e53935; font-size: 18px; }
+  .summary-quote {
+    background: #fff8e7;
+    border: 2px solid #c8a84b;
+    border-radius: 12px;
+    padding: 14px 20px;
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Frank Ruehl CLM', David, serif;
+    font-size: 17px;
+    color: #5a3a10;
+    line-height: 1.9;
+  }
+  .think-box {
+    background: #e8eaf6;
+    border: 2px solid #7986cb;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-top: 14px;
+  }
+  .think-box h3 { color: #3949ab; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1: OPENING ==================== -->
+<div class="page">
+  <div class="page-num">1</div>
+
+  <div class="unit-badge">
+    יחידת לימוד גמרא &bull; כיתה ה׳ &bull; מסכת ברכות
+  </div>
+
+ 
+  <h1>מסכת ברכות פרק ד׳<br>תפילה בזמנה</h1>
+  <div class="subtitle">סוגיית דיני תשלומין — שכח להתפלל, מה עושה?</div>
+
+  <div class="opening-illustration">🕍🕯️📖</div>
+
+  <div class="question-box">
+    <p>מה קורה אם שכחת להתפלל ערבית —<br>האם אפשר לתקן? איך?</p>
+  </div>
+
+  <p class="answer-lines-label">כתוב את מחשבתך הראשונה — לפני שלומדים:</p>
+  <div class="answer-lines"></div>
+  <div class="answer-lines"></div>
+  <div class="answer-lines"></div>
+
+  <div style="margin-top:22px; padding: 14px 18px; background:#f5f5f5; border-radius:10px; border: 1px solid #ddd;">
+    <h3 style="margin-bottom:8px;">🗺️ מה נלמד ביחידה זו?</h3>
+    <ul style="margin-right:18px; font-size:14px; line-height:2;">
+      <li>הכרת הסוגיה — טקסט מקורי עם תרגום</li>
+      <li>הבנת מבנה הסוגיה: קושיה ותירוץ</li>
+      <li>דין "תשלומין" — עקרון ההשלמה בתפילה</li>
+      <li>ההבדל בין שכר תפילה בזמנה לשלא בזמנה</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== PAGE 2: TEXT ==================== -->
+<div class="page">
+  <div class="page-num">2</div>
+
+  <h1 style="font-size:22px;">הטקסט המקורי</h1>
+  <div class="subtitle">מסכת ברכות דף כ״ו עמוד א׳</div>
+
+  <div class="gemara-font">
+
+    <!-- KUSHIA 1 -->
+    <span class="kushia">
+      וְ<span class="hard-word">כוּלֵּי עָלְמָא</span><span class="trans">כולם / כל העולם</span>
+      עַד חֲצוֹת
+      <span class="hard-word">וְתוּ לָא</span><span class="trans">ולא יותר</span>!
+    </span>
+
+    <!-- BRIDGE -->
+    <span style="display:block; padding: 8px 14px; font-size:17px; color:#444;">
+      וְהָאֲמַר רַב מָרִי
+      <span class="hard-word">בְּרֵיהּ</span><span class="trans">בנו</span>
+      דְּרַב הוּנָא
+      <span class="hard-word">בְּרֵיהּ</span><span class="trans">בנו</span>
+      דְּרִבִּי יִרְמְיָה בַּר אַבָּא אֲמַר רִבִּי יוֹחָנָן:
+      <span class="hard-word">טָעָה</span><span class="trans">שכח </span>
+      וְלֹא הִתְפַּלֵּל עַרְבִית, מִתְפַּלֵּל בַּשַּׁחֲרִית שְׁתַּיִם;
+      שַׁחֲרִית, מִתְפַּלֵּל בַּמִּנְחָה שְׁתַּיִם.
+    </span>
+
+    <!-- KUSHIA 2 -->
+    <span class="kushia">
+      <span class="hard-word">כֻּלֵּי יוֹמָא</span><span class="trans">כל היום</span>
+      <span class="hard-word">מְצַלֵּי וְאָזֵיל</span><span class="trans">מתפלל והולך</span>!
+    </span>
+
+    <!-- TIRETZ -->
+    <span class="tiretz">
+      עַד חֲצוֹת
+      <span class="hard-word">יָהֲבִי לֵיהּ</span><span class="trans">נותנים לו</span>
+      <span class="hard-word">שְׂכַר</span><span class="trans">שכר / פרס</span>
+      תְּפִלָּה בִּזְמַנָּהּ,
+      <span class="hard-word">מִכָּאן וְאֵילָךְ</span><span class="trans">מכאן ואילך</span>,
+      שְׂכַר תְּפִלָּה
+      <span class="hard-word">יָהֲבִי לֵיהּ</span><span class="trans">נותנים לו</span>,
+      שְׂכַר תְּפִלָּה בִּזְמַנָּהּ,
+      <span class="hard-word">לָא יָהֲבִי לֵיהּ</span><span class="trans">לא נותנים לו</span>.
+    </span>
+
+  </div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <div class="legend-item">
+      <div class="legend-box legend-kushia"></div>
+      <span><strong>צהוב</strong> = קושיה (שאלה / קשי)</span>
+    </div>
+    <div class="legend-item">
+      <div class="legend-box legend-tiretz"></div>
+      <span><strong>ירוק</strong> = תירוץ (תשובה / פתרון)</span>
+    </div>
+  </div>
+
+  <!-- TRANSLATION BOX -->
+  <div style="margin-top:18px; background:#f9f9f9; border:1px solid #ddd; border-radius:10px; padding:14px 18px;">
+    <h3 style="margin-bottom:10px;">📝 תרגום חופשי לעברית מודרנית</h3>
+    <p style="font-size:13.5px; line-height:2; color:#333;">
+      <strong style="color:#b8860b;">[קושיה א׳]</strong> אבל הכל מסכימים שזמן התפילה הוא רק עד חצות — ולא יותר!<br>
+      <strong style="color:#555;">[הצגת הדין]</strong> שהרי אמר רב מרי בן רב הונא בן רבי ירמיה בר אבא בשם רבי יוחנן: שכח ולא התפלל ערבית — מתפלל בשחרית שתיים; שכח שחרית — מתפלל במנחה שתיים.<br>
+      <strong style="color:#b8860b;">[קושיה ב׳]</strong> אם כן הוא יכול להתפלל שחרית אחרי חצות היום!<br>
+      <strong style="color:#2e7d32;">[תירוץ]</strong> עד חצות — נותנים לו שכר תפילה בזמנה. מכאן ואילך — שכר תפילה כן נותנים לו, אבל שכר תפילה בזמנה — לא נותנים לו.
+    </p>
+  </div>
+</div>
+
+<!-- ==================== PAGE 3: WORKSHEET 1 ==================== -->
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>גמרא - דף עבודה 1</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f1ea; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 10px solid #7b4f1e; }
+        h1 { color: #7b4f1e; text-align: center; border-bottom: 2px solid #c8a84b; padding-bottom: 15px; }
+        
+        .student-info { margin-bottom: 30px; padding: 15px; background: #fffdf7; border: 1px dashed #c8a84b; border-radius: 8px; }
+        .student-info label { font-weight: bold; color: #7b4f1e; }
+        
+        /* שיניתי את ה-ID ל-name1 כדי שיתאים לסקריפט */
+        #name1 { width: 250px; padding: 8px; border: none; border-bottom: 2px solid #7b4f1e; font-size: 16px; outline: none; background: transparent; }
+
+        .q-block { margin-bottom: 25px; padding: 15px; border-right: 5px solid #c8a84b; background: #fdfaf2; border-radius: 4px; }
+        .q-text { font-weight: bold; display: block; margin-bottom: 12px; color: #3a2500; font-size: 1.1em; }
+        
+        textarea { 
+            width: 100%; height: 100px; padding: 12px; border: 1px solid #ccc; border-radius: 6px; 
+            font-size: 16px; font-family: inherit; box-sizing: border-box; resize: vertical;
+        }
+
+        .submit-btn { 
+            background: #2e7d32; color: white; border: none; padding: 15px 40px; 
+            border-radius: 30px; font-size: 18px; cursor: pointer; display: block; 
+            margin: 40px auto 10px; font-weight: bold; transition: background 0.3s;
+        }
+        .submit-btn:hover { background: #1b5e20; }
+        .submit-btn:disabled { background: #888; cursor: not-allowed; }
+        
+        #status1 { text-align: center; font-weight: bold; min-height: 24px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>דף עבודה 1: סוגיית תפילת השחר</h1>
+
+    <div class="student-info">
+        <label for="name1">שם התלמיד:</label>
+        <input type="text" id="name1" placeholder="הקלד שם מלא כאן...">
+    </div>
+
+    <div class="q-block">
+        <span class="q-text">1. מה שואלת הגמרא בתחילת הקטע?</span>
+        <textarea id="q1" placeholder="כתוב את תשובתך כאן..."></textarea>
+    </div>
+
+    <div class="q-block">
+        <span class="q-text">2. מה אמר רבי יוחנן לגבי מי ששכח ערבית?</span>
+        <textarea id="q2" placeholder="כתוב את תשובתך כאן..."></textarea>
+    </div>
+
+    <div class="q-block">
+        <span class="q-text">3. מה הדין למי ששכח שחרית?</span>
+        <textarea id="q3" placeholder="כתוב את תשובתך כאן..."></textarea>
+    </div>
+
+    <div class="q-block">
+        <span class="q-text">4. מה ההבדל בין "שכר תפילה" ל"שכר תפילה בזמנה"?</span>
+        <textarea id="q4" placeholder="כתוב את תשובתך כאן..."></textarea>
+    </div>
+
+    <div class="q-block" style="border-right-color: #ff9800;">
+        <span class="q-text">5. שאלת מחשבה: למה לדעתך חשוב להתפלל בזמן?</span>
+        <textarea id="q5" placeholder="שתף את המחשבות שלך..."></textarea>
+    </div>
+
+    <button class="submit-btn" id="btn1" onclick="sendSheet1()">שלח תשובות למורה ✅</button>
+    <div id="status1"></div>
+</div>
+
+</body>
+</html>
+
+<!-- ==================== PAGE 4: WORKSHEET 2 ==================== -->
+<div class="page">
+  <div class="page-num">4</div>
+
+
+  <h1 style="font-size:20px;">דף עבודה 2 — מבנה הסוגיה</h1>
+
+  <!-- TABLE -->
+  <h2>חלק א׳ — מלא את הטבלה</h2>
+  <p style="font-size:13px; color:#666; margin-bottom:8px;">זהה את הקושיות והתירוץ בסוגיה וכתוב אותם בטבלה:</p>
+
+  <table class="sugya-table">
+    <tr>
+      <th style="background:#b8860b;">קושיה</th>
+      <th style="background:#4caf50;">תירוץ</th>
+    </tr>
+    <tr>
+      <td class="col-kushia" style="height:55px;"></td>
+      <td class="col-tiretz" style="height:55px;"></td>
+    </tr>
+    <tr>
+      <td class="col-kushia" style="height:55px;"></td>
+      <td class="col-tiretz" style="height:55px;"></td>
+    </tr>
+  </table>
+
+  <!-- FLOW DIAGRAM -->
+  <h2>חלק ב׳ — השלם את תרשים הזרימה</h2>
+  <p style="font-size:13px; color:#666; margin-bottom:10px;">מלא את המשבצות החסרות לפי מה שלמדת:</p>
+
+  <div style="background:#fffdf7; border:1.5px solid #c8a84b; border-radius:10px; padding:14px 10px;">
+
+    <div class="flow-container">
+      <div class="flow-box filled">שכח ערבית</div>
+      <div class="flow-arrow">←</div>
+      <div class="flow-box">מתפלל שחרית</div>
+      <div class="flow-arrow">←</div>
+      <div class="flow-box empty">________</div>
+    </div>
+
+    <div class="flow-container" style="margin-top:10px;">
+      <div class="flow-box filled">שכח שחרית</div>
+      <div class="flow-arrow">←</div>
+      <div class="flow-box empty">________</div>
+      <div class="flow-arrow">←</div>
+      <div class="flow-box empty">________</div>
+    </div>
+
+    <div style="margin-top:12px; border-top:1px dashed #ccc; padding-top:12px;">
+      <div class="flow-container">
+        <div class="flow-box" style="background:#fffbc2; border-color:#e0c020;">התפלל עד חצות</div>
+        <div class="flow-arrow">←</div>
+        <div class="flow-box empty">שכר ________</div>
+      </div>
+      <div class="flow-container" style="margin-top:8px;">
+        <div class="flow-box" style="background:#ffe0b2; border-color:#ff9800;">התפלל אחרי חצות</div>
+        <div class="flow-arrow">←</div>
+        <div class="flow-box empty">שכר ________<br><small style="font-weight:normal; color:#aaa;">ולא __________</small></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THOUGHT QUESTION -->
+<h2>חלק ג׳ — שאלת מחשבה</h2>
+<h2>חלק ג׳ — שאלת מחשבה</h2>
+<div class="think-box">
+    <h3>🤔 האם לדעתך תפילה בדיעבד שווה כמו תפילה בזמן? נמק את תשובתך.</h3>
+    
+    <div style="margin-bottom: 15px;">
+        <label>שם התלמיד (לזיהוי): </label>
+        <input type="text" id="namePage4" style="border:none; border-bottom:1px solid #ccc; width:150px;" placeholder="הקלד שם...">
+    </div>
+
+    <div class="q-block">
+        <span class="q-text">שאלה: מהו המסר העיקרי שלמדת מהסוגיה על חשיבות התפילה בזמנה?</span>
+        <textarea id="q6" style="height: 150px;" placeholder="כתוב כאן..."></textarea>
+    </div>
+
+    <button class="submit-btn" id="btnPage4" onclick="handleSendPage4()">שלח שאלת סיכום 🎓</button>
+    <div id="statusPage4" class="status-msg"></div>
+</div>
+<div style="clear: both; margin-bottom: 50px;"></div>
+
+<!-- ==================== PAGE 5: QUIZ (INTERACTIVE) ==================== -->
+<div class="page">
+  <div class="page-num">5</div>
+
+
+  <h1 style="font-size:20px;">חידון — שאלות אמריקאיות</h1>
+  <div class="subtitle">לחץ על התשובה הנכונה — אפשר לנסות שוב אם טועים!</div>
+
+  <!-- PROGRESS DOTS -->
+  <div class="quiz-progress" id="progressDots">
+    <div class="progress-dot" id="dot-0"></div>
+    <div class="progress-dot" id="dot-1"></div>
+    <div class="progress-dot" id="dot-2"></div>
+    <div class="progress-dot" id="dot-3"></div>
+    <div class="progress-dot" id="dot-4"></div>
+    <div class="progress-dot" id="dot-5"></div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="quiz-q" id="q0">
+    <div class="quiz-q-text">1. עד מתי הוא זמן תפילת שחרית לפי הסוגיה?</div>
+    <div class="quiz-options">
+      <button class="opt-btn" onclick="check(0,0)"><span class="opt-circle">א</span> עד עלות השחר</button>
+      <button class="opt-btn" onclick="check(0,1)"><span class="opt-circle">ב</span>  עד חצות היום</button>
+      <button class="opt-btn" onclick="check(0,2)"><span class="opt-circle">ג</span> עד השקיעה</button>
+      <button class="opt-btn" onclick="check(0,3)"><span class="opt-circle">ד</span> עד שבע שעות</button>
+    </div>
+    <div class="feedback-msg" id="fb0"></div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quiz-q" id="q1">
+    <div class="quiz-q-text">2. מי ששכח להתפלל ערבית — מה הוא עושה בשחרית?</div>
+    <div class="quiz-options">
+      <button class="opt-btn" onclick="check(1,0)"><span class="opt-circle">א</span> מתפלל פעם אחת בלבד</button>
+      <button class="opt-btn" onclick="check(1,1)"><span class="opt-circle">ב</span> אינו מתפלל כלל</button>
+      <button class="opt-btn" onclick="check(1,2)"><span class="opt-circle">ג</span> מתפלל שחרית שתיים</button>
+      <button class="opt-btn" onclick="check(1,3)"><span class="opt-circle">ד</span> מתפלל שחרית שלוש פעמים</button>
+    </div>
+    <div class="feedback-msg" id="fb1"></div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="quiz-q" id="q2">
+    <div class="quiz-q-text">3. מי ששכח להתפלל שחרית — מה הוא עושה במנחה?</div>
+    <div class="quiz-options">
+      <button class="opt-btn" onclick="check(2,0)"><span class="opt-circle">א</span> מתפלל מנחה שתיים</button>
+      <button class="opt-btn" onclick="check(2,1)"><span class="opt-circle">ב</span> מתפלל פעם אחת</button>
+      <button class="opt-btn" onclick="check(2,2)"><span class="opt-circle">ג</span> צום כפרה</button>
+      <button class="opt-btn" onclick="check(2,3)"><span class="opt-circle">ד</span> אין לו תקנה</button>
+    </div>
+    <div class="feedback-msg" id="fb2"></div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="quiz-q" id="q3">
+    <div class="quiz-q-text">4. מה מקבל מי שמתפלל <u>אחרי חצות היום</u> (בדיעבד)?</div>
+    <div class="quiz-options">
+      <button class="opt-btn" onclick="check(3,0)"><span class="opt-circle">א</span> שכר תפילה בזמנה</button>
+      <button class="opt-btn" onclick="check(3,1)"><span class="opt-circle">ב</span> שכר תפילה (אך לא "בזמנה")</button>
+      <button class="opt-btn" onclick="check(3,2)"><span class="opt-circle">ג</span> אין לו שכר כלל</button>
+      <button class="opt-btn" onclick="check(3,3)"><span class="opt-circle">ד</span> עונש על שכח</button>
+    </div>
+    <div class="feedback-msg" id="fb3"></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="quiz-q" id="q4">
+    <div class="quiz-q-text">5. מה <u>אינו</u> מקבל מי שמתפלל אחרי חצות?</div>
+    <div class="quiz-options">
+      <button class="opt-btn" onclick="check(4,0)"><span class="opt-circle">א</span> שכר תפילה כלשהו</button>
+      <button class="opt-btn" onclick="check(4,1)"><span class="opt-circle">ב</span> שכר תפילה בזמנה</button>
+      <button class="opt-btn" onclick="check(4,2)"><span class="opt-circle">ג</span> מחילה על שכחתו</button>
+      <button class="opt-btn" onclick="check(4,3)"><span class="opt-circle">ד</span> הוא מקבל הכל</button>
+    </div>
+    <div class="feedback-msg" id="fb4"></div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="quiz-q" id="q5">
+    <div class="quiz-q-text">6. מה שמו של האמורא שפסק את דין התשלומין?</div>
+    <div class="quiz-options">
+      <button class="opt-btn" onclick="check(5,0)"><span class="opt-circle">א</span> רב הונא</button>
+      <button class="opt-btn" onclick="check(5,1)"><span class="opt-circle">ב</span> רבי ירמיה</button>
+      <button class="opt-btn" onclick="check(5,2)"><span class="opt-circle">ג</span> רבי יוחנן</button>
+      <button class="opt-btn" onclick="check(5,3)"><span class="opt-circle">ד</span> רב מרי</button>
+    </div>
+    <div class="feedback-msg" id="fb5"></div>
+  </div>
+
+  <!-- FINISH BANNER -->
+  <div class="finish-banner" id="finishBanner">
+    <div class="star-row">⭐ ⭐ ⭐</div>
+    סיימת! ענית נכון על כל השאלות 🎉
+    <div style="font-size:15px; margin-top:10px; font-weight:normal; color:#2e7d32;">
+      כל הכבוד — אתה שולט בסוגייה!
+    </div>
+    <div class="star-row">⭐ ⭐ ⭐</div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 6: VISUAL SUMMARY ==================== -->
+<div class="page">
+  <div class="page-num">6</div>
+
+
+  <div class="summary-title">📊 דיני תשלומין — סיכום ויזואלי</div>
+
+  <!-- TASHLUMIM CARDS -->
+  <div class="diagram-grid">
+
+    <div class="diagram-card">
+      <div class="card-header">ערבית נשכחה</div>
+      <div class="card-body">
+        <div class="rule-row">
+          <span class="rule-icon">🌙</span>
+          <span style="font-weight:bold;">שכח ערבית</span>
+        </div>
+        <div class="rule-row">
+          <span class="rule-icon">⬇️</span>
+          <span>מתפלל בשחרית</span>
+        </div>
+        <div class="rule-row">
+          <span class="rule-icon">🔢</span>
+          <div class="rule-result">שתי תפילות</div>
+        </div>
+        <div style="font-size:12.5px; color:#555; margin-top:8px; line-height:1.6; background:#f9f9f9; border-radius:6px; padding:6px 10px;">
+          תפילה ראשונה = שחרית של היום<br>
+          תפילה שנייה = עוד פעם שחרית כתשלום לערבית שנשכחה
+        </div>
+      </div>
+    </div>
+
+    <div class="diagram-card">
+      <div class="card-header">שחרית נשכחה</div>
+      <div class="card-body">
+        <div class="rule-row">
+          <span class="rule-icon">🌅</span>
+          <span style="font-weight:bold;">שכח שחרית</span>
+        </div>
+        <div class="rule-row">
+          <span class="rule-icon">⬇️</span>
+          <span>מתפלל במנחה</span>
+        </div>
+        <div class="rule-row">
+          <span class="rule-icon">🔢</span>
+          <div class="rule-result">שתי תפילות</div>
+        </div>
+        <div style="font-size:12.5px; color:#555; margin-top:8px; line-height:1.6; background:#f9f9f9; border-radius:6px; padding:6px 10px;">
+          תפילה ראשונה = מנחה של היום<br>
+          תפילה שנייה = עוד פעם מנחה כתשלום למנחה שנשכחה
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- REWARD TABLE -->
+  <h2>טבלת השכר — מה מקבל המתפלל?</h2>
+
+  <table class="reward-table">
+    <tr>
+      <th style="border-radius:0 8px 0 0;">מתי התפלל?</th>
+      <th>שכר תפילה</th>
+      <th>שכר תפילה <u>בזמנה</u></th>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;">עד חצות</td>
+      <td class="reward-full"><span class="check">✓</span> מקבל</td>
+      <td class="reward-full"><span class="check">✓</span> מקבל</td>
+    </tr>
+    <tr>
+      <td style="font-weight:bold;">אחרי חצות</td>
+      <td class="reward-partial"><span class="check">✓</span> מקבל</td>
+      <td style="background:#ffebee; color:#c62828; font-weight:bold;"><span class="cross">✗</span> לא מקבל</td>
+    </tr>
+  </table>
+
+  <!-- VISUAL TIMELINE -->
+  <h2 style="margin-top:18px;">ציר הזמן של התפילה</h2>
+  <div style="background:#fffdf7; border:1.5px solid #c8a84b; border-radius:10px; padding:14px 16px;">
+    <div style="display:flex; align-items:center; gap:0; width:100%; position:relative;">
+      <div style="flex:1; height:14px; background:linear-gradient(to left, #fffbc2, #4caf50); border-radius:7px 0 0 7px;"></div>
+      <div style="flex:1; height:14px; background:linear-gradient(to left, #ffcdd2, #fffbc2);"></div>
+      <div style="flex:0.5; height:14px; background:#ffcdd2; border-radius:0 7px 7px 0;"></div>
+    </div>
+    <div style="display:flex; justify-content:space-between; margin-top:6px; font-size:12px; color:#555;">
+      <span>עמוד השחר 🌄</span>
+      <span style="color:#e65100; font-weight:bold;">חצות ⚖️</span>
+      <span>שקיעה 🌇</span>
+    </div>
+    <div style="display:flex; justify-content:space-between; margin-top:4px; font-size:11px;">
+      <span style="color:#2e7d32; font-weight:bold;">← שכר מלא (בזמנה)</span>
+      <span style="color:#e65100;">שכר חלקי →</span>
+    </div>
+  </div>
+
+  <!-- QUOTE -->
+  <div class="summary-quote">
+    עַד חֲצוֹת יָהֲבִי לֵיהּ שְׂכַר תְּפִלָּה בִּזְמַנָּהּ,<br>
+    מִכָּאן וְאֵילָךְ, שְׂכַר תְּפִלָּה יָהֲבִי לֵיהּ —<br>
+    שְׂכַר תְּפִלָּה בִּזְמַנָּהּ, לָא יָהֲבִי לֵיהּ.<br>
+    <span style="font-family:Arial; font-size:13px; color:#888;">(מסכת ברכות כ״ו ע״א)</span>
+  </div>
+</div>
+
+<script>
+  // correctAnswer[i] = index of correct button (0-based) for question i
+  var correctAnswer = [1, 2, 0, 1, 1, 2];
+  var solved = [false, false, false, false, false, false];
+
+  var successMessages = [
+    'כל הכבוד! ✓',
+    'מצוין! ✓',
+    'נכון מאוד! ✓',
+    'יפה מאוד! ✓',
+    'מושלם! ✓',
+    'כל הכבוד! ✓'
+  ];
+
+  function check(qIdx, btnIdx) {
+    if (solved[qIdx]) return;
+
+    var qEl    = document.getElementById('q' + qIdx);
+    var fbEl   = document.getElementById('fb' + qIdx);
+    var btns   = qEl.querySelectorAll('.opt-btn');
+    var clicked = btns[btnIdx];
+
+    // Clear previous wrong state on all buttons
+    btns.forEach(function(b) {
+      b.classList.remove('wrong');
+    });
+
+    if (btnIdx === correctAnswer[qIdx]) {
+      // CORRECT
+      clicked.classList.add('correct');
+      fbEl.textContent = successMessages[qIdx];
+      fbEl.className   = 'feedback-msg ok';
+
+      // Disable all buttons in this question
+      btns.forEach(function(b) { b.disabled = true; });
+      qEl.classList.add('solved');
+
+      solved[qIdx] = true;
+      document.getElementById('dot-' + qIdx).classList.add('done');
+
+      // Check if all done
+      if (solved.every(function(s) { return s; })) {
+        setTimeout(function() {
+          var banner = document.getElementById('finishBanner');
+          banner.classList.add('show');
+          banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 500);
+      }
+    } else {
+      // WRONG — flash red, keep buttons active
+      clicked.classList.add('wrong');
+      fbEl.textContent = 'נסה שוב... 🔄';
+      fbEl.className   = 'feedback-msg err';
+
+      // Remove red after short delay so next click resets cleanly
+      setTimeout(function() {
+        clicked.classList.remove('wrong');
+      }, 900);
+    }
+  }
+  
+</script>
+<script>
+    // הקישור שלך ל-Google Sheets
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwCgHitFsYhaOgcmrzVJG3LCjuL_Nxipck36hoDx7-YLdz6lUkYq264UgocGT7fetyHNA/exec';
+
+    // פונקציה לשליחת דף 3 (שאלות 1-5)
+    async function sendSheet1() {
+        const name = document.getElementById('name1').value;
+        if (!name) { alert("נא למלא שם תלמיד בדף 3!"); return; }
+
+        const payload = {
+            studentName: name,
+            answer1: document.getElementById('q1').value,
+            answer2: document.getElementById('q2').value,
+            answer3: document.getElementById('q3').value,
+            answer4: document.getElementById('q4').value,
+            answer5: document.getElementById('q5').value,
+            answer6: ""
+        };
+        await executeSubmit(payload, 'btn1', 'status1');
+    }
+
+    // פונקציה לשליחת דף 4 (שאלה 6)
+    async function handleSendPage4() {
+        const name = document.getElementById('namePage4').value;
+        const q6Value = document.getElementById('q6').value;
+
+        if (!name) { alert("נא למלא שם תלמיד בדף 4 לזיהוי!"); return; }
+
+        const payload = {
+            studentName: name + " (סיכום)",
+            answer1: "", answer2: "", answer3: "", answer4: "", answer5: "",
+            answer6: q6Value
+        };
+        await executeSubmit(payload, 'btnPage4', 'statusPage4');
+    }
+
+    // הפונקציה המרכזית שמבצעת את השליחה לשני הכפתורים
+    async function executeSubmit(payload, btnId, statusId) {
+        const btn = document.getElementById(btnId);
+        const status = document.getElementById(statusId);
+        
+        btn.disabled = true;
+        btn.innerText = "שולח נתונים...";
+        status.innerText = "מעבד...";
+
+        try {
+            await fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: JSON.stringify(payload)
+            });
+            status.innerText = "נשלח בהצלחה! ✅";
+            status.style.color = "green";
+            btn.innerText = "בוצע!";
+        } catch (e) {
+            status.innerText = "שגיאה בשליחה.";
+            status.style.color = "red";
+            btn.disabled = false;
+            btn.innerText = "נסה שוב";
+        }
+    }
+</script>
+</body>
+</html>
